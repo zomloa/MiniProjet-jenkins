@@ -90,7 +90,7 @@ pipeline {
      }
      stage('PROD - Deploy app') {
        when {
-           expression { GIT_BRANCH == 'origin/main' }
+           expression { GIT_BRANCH == 'main' }
        }
      agent any
 
@@ -106,10 +106,10 @@ pipeline {
   }
   post {
        success {
-         slackSend (color: '#00FF00', message: "ULRICH - SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) - PROD URL => http://${PROD_APP_ENDPOINT} , STAGING URL => http://${STG_APP_ENDPOINT}")
+         slackSend (color: '#00FF00', message: "Dave - SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) - PROD URL => http://${PROD_APP_ENDPOINT} , STAGING URL => http://${STG_APP_ENDPOINT}")
          }
       failure {
-            slackSend (color: '#FF0000', message: "ULRICH - FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            slackSend (color: '#FF0000', message: "Dave - FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
           }   
     }  
 }
